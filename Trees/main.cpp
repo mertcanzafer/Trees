@@ -18,10 +18,46 @@ Node<T>* createNode(T value)
 	NextNode->leftChild = NextNode->rightChild = NULL;
 	return NextNode;
 }
+template<class T>
+// Preorder Algh.
+void printTreePreorder(Node<T>* root)
+{
+	// Data- left- right
+	if (root == NULL) return;
+
+	cout << root->value << endl;
+	printTreePreorder(root->leftChild);
+	printTreePreorder(root->rightChild);
+}
+template<class T>
+// Inorder Algh
+void printTreeInorder(Node<T>* root)
+{
+	// left - Data - right
+	if (root == NULL) return;
+
+	printTreeInorder(root->leftChild);
+	cout << root->value << endl;
+	printTreeInorder(root->rightChild);
+}
+
+template<class T>
+// Postorder Algh
+void printTreePostorder(Node<T>* root)
+{
+	// left - right - data
+	if (root == NULL) return;
+
+	printTreePostorder(root->leftChild);
+	printTreePostorder(root->rightChild);
+	cout << root->value << endl;
+}
+
 
 int main()
 {
 	Node<int>* root = createNode(1);
+
 
 	// level = 1
 	root->leftChild = createNode(2);
@@ -36,6 +72,11 @@ int main()
 	root->leftChild->rightChild->leftChild = createNode(9);
 	root->rightChild->rightChild->leftChild = createNode(15);
 
+	printTreePreorder(root);
+	cout << "--------------------" << endl;
+	printTreeInorder(root);
+	cout << "--------------------" << endl;
+	printTreePostorder(root);
 
 	delete root;
 	return 0;
